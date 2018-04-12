@@ -9,11 +9,10 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
-import { environment } from '../environments/environment';
-
 import { IconListComponent } from './icon-list/icon-list.component';
 import { BusinessService } from './services/business.service';
 import { DbService } from './services/db.service';
+import { environment } from '../environments/environment';
 
 const appRoutes: Routes = [
   {

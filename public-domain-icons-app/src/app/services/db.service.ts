@@ -16,7 +16,7 @@ export class DbService {
 
     getIcons(priority: number = -1): Promise<Observable<Icon[]>> {
         let itemsList = this.db.collection<Icon>('icons', ref =>
-            ref.orderBy('title', 'asc'));
+            ref.orderBy('id', 'asc').limit(50));
         return Promise.resolve(itemsList.valueChanges());
     }
 
