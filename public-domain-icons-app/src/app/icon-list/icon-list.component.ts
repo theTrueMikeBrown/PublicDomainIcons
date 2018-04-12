@@ -22,4 +22,8 @@ export class IconListComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  upload(){
+    this.business.uploadIcons();
+  }  
 }
