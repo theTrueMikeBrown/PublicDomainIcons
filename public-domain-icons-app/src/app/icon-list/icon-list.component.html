@@ -2,7 +2,7 @@
 <div>
   <div class="responsive" *ngFor="let icon of icons | async">
     <div class="gallery">
-      <a target="_blank" href="images\2.svg">
+      <a target="_blank" [href]="icon.downloadUrl">
         <img [src]="icon.downloadUrl" [alt]="icon.fileName" width="500" height="500" />
         <div class="desc">{{icon.title}}</div>
       </a>
