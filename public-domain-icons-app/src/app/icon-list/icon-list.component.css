@@ -1,0 +1,55 @@
+
+      div.gallery {
+        border: 1px solid #ccc;
+    }
+    
+    div.gallery:hover {
+        border: 1px solid #777;
+    }
+    
+    div.gallery img {
+        width: 100%;
+        height: auto;
+    }
+    
+    div.desc {
+        padding-bottom: .5em;
+        text-align: center;
+        font-size: 1em;
+    }
+    
+    * {
+        box-sizing: border-box;
+    }
+    
+    .responsive {
+        padding: 0 6px;
+        float: left;
+        width: 12.49999%;
+    }
+    
+    @media only screen and (max-width: 700px){
+        .responsive {
+            width: 24.99999%;
+            margin: 6px 0;
+        }
+    }
+    
+    @media only screen and (max-width: 500px){
+        .responsive {
+            width: 50%;
+        }
+    }
+    
+    .clearfix:after {
+        content:"";
+        display: table;
+        clear: both;
+    }
+    
+    .buttonThing {
+         position: absolute;
+         top: 1em;
+         right: 1em;
+    }
+  

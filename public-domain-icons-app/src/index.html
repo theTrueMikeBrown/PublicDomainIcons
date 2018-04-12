@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>PublicDomainIconsApp</title>
+  <title>Public Domain Icons</title>
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,37 +10,5 @@
 </head>
 <body>
   <app-root></app-root>
-<!--   <p id="load">Firebase SDK Loading&hellip;</p>
-
-  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
-  <script>
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyA0xPqT58b9JuWd1fz_VAKeurqTa7aWN4g",
-      authDomain: "publicdomainicons.firebaseapp.com",
-      databaseURL: "https://publicdomainicons.firebaseio.com",
-      projectId: "publicdomainicons",
-      storageBucket: "publicdomainicons.appspot.com",
-      messagingSenderId: "874427759997"
-    };
-    firebase.initializeApp(config);
-	
-    document.addEventListener('DOMContentLoaded', function() {
-      debugger;	    
-      firebase.auth().onAuthStateChanged(user => { });
-      firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-      firebase.messaging().requestPermission().then(() => { });
-      firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-
-      try {
-        let app = firebase.app();
-        let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
-        document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
-      } catch (e) {
-        console.error(e);
-        document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
-      }
-    });
-  </script> -->
 </body>
 </html>
