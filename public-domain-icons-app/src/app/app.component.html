@@ -1,14 +1,4 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
   <router-outlet></router-outlet>
-  <div class="logout">
-    <div *ngIf="auth.authState | async as user; else loginBlock">
-      <div>Hello {{ user.displayName }}!</div>
-      <button (click)="logout()">Logout</button>
-    </div>
-    <ng-template #loginBlock>
-      <p>Please login.</p>
-      <button (click)="login()">Login with Google</button>
-    </ng-template>
-  </div>
 </div>

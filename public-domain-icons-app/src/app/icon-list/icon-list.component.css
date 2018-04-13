@@ -1,10 +1,24 @@
-q{
+
+
+.deleteButton {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: none;
+    background: tomato;
+    border: slategray 1px solid;
+    border-radius: 1em;
+    color: white;
+}
+
+q {
     font-style: italic;
     margin: 1em;
 }
 
       div.gallery {
         border: 1px solid #ccc;
+        position: relative;
     }
     
     div.gallery:hover {

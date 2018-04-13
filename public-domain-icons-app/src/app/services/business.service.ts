@@ -12,13 +12,17 @@ export class BusinessService {
     return this.db.getIcons(-1);
   }
 
-  uploadIcons(): void {
-    // var icons: Icon[] = [
-    //   { "fileName": "1.svg", "title": "1", "id": "", "downloadUrl": "" }
-    // ];
+  uploadIcon(file: File): void {
+    var icon = { "fileName": file.name, "title": file.name.replace(/\.[^/.]+$/, ""), "id": "", "downloadUrl": "", "tags":[] };
 
-    // icons.forEach(icon => {
-    //   this.db.uploadIcon(icon);      
-    // });
+    this.db.uploadIcon(icon, file);
+  }
+
+  deleteIcon(id: string): void {
+    this.db.deleteIcon(id);
+  }
+
+  addTag(id: string, tag: string): void {
+    this.db.addTag(id, tag);
   }
 }

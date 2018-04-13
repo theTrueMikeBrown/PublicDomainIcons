@@ -13,6 +13,7 @@ import { IconListComponent } from './icon-list/icon-list.component';
 import { BusinessService } from './services/business.service';
 import { DbService } from './services/db.service';
 import { environment } from '../environments/environment';
+import { TagListComponent } from './tag-list/tag-list.component';
 
 const appRoutes: Routes = [
   {
@@ -29,7 +30,8 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    IconListComponent
+    IconListComponent,
+    TagListComponent
   ],
   imports: [
     BrowserModule,

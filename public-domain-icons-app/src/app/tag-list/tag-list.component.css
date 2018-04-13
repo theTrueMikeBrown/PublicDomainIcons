@@ -1,0 +1,8 @@
+.holder {
+width: 100%;
+overflow: hidden;
+}
+
+.holder input {
+    width: 90%;
+}

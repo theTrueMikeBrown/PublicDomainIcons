@@ -1,0 +1,4 @@
+<div class="holder">
+<div>tags: <span *ngFor="let tag of tags; let isLast=last">{{tag}}{{isLast ? "": ", "}}</span></div>
+<div>new tag:<input [id]="'input' + this.id" #newTag type="text" (keyup.enter)="enterTag(newTag.value)" /></div>
+</div>

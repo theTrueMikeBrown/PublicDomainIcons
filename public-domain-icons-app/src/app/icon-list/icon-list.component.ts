@@ -5,6 +5,7 @@ import { FirebaseApp } from 'angularfire2';
 import { BusinessService } from '../services/business.service';
 
 import { Icon } from '../types/icon';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   selector: 'app-icon-list',
@@ -13,17 +14,29 @@ import { Icon } from '../types/icon';
 })
 export class IconListComponent implements OnInit {
   icons: Observable<Icon[]>;
+  isAdmin: boolean = true;
 
-  constructor(private business: BusinessService) {
+  constructor(
+    private business: BusinessService,
+    public auth: AngularFireAuth) {
     this.business.getIcons().then(g => {
-        this.icons = g;
+      this.icons = g;
     })
   }
 
   ngOnInit() {
   }
 
-  upload(){
-    this.business.uploadIcons();
-  }  
+  uploadFile(event) {
+    for (var i = 0; i < event.target.files.length; i++) {
+      var file = event.target.files[i];
+      if (!file.name.endsWith('.xcf')) {
+        this.business.uploadIcon(file);
+      }
+    }
+  }
+
+  deleteIcon(id: string) {
+    this.business.deleteIcon(id);
+  }
 }
