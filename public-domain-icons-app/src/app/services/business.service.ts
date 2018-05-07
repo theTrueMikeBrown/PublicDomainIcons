@@ -3,13 +3,15 @@ import { Observable } from 'rxjs/Observable';
 import { Icon } from '../types/icon';
 import { DbService } from './db.service';
 
+import { of } from 'rxjs/observable/of';
+
 @Injectable()
 export class BusinessService {
 
   constructor(private db: DbService) { }
 
   getIcons(): Promise<Observable<Icon[]>> {
-    return this.db.getIcons(-1);
+    return this.db.getIcons();
   }
 
   uploadIcon(file: File): void {
@@ -25,4 +27,11 @@ export class BusinessService {
   addTag(id: string, tag: string): void {
     this.db.addTag(id, tag);
   }
+
+  // searchIcons(term: string): Observable<Icon[]> {
+  //   if (!term.trim()) {
+  //     return of([]);
+  //   }
+  //   return this.db.searchIcons(term);
+  // }
 }

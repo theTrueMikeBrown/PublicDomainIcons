@@ -1,23 +1,31 @@
 <h1>Public Domain Icons</h1>
+
+<div class="edgeHugger" title="Support me on Patreon!">
+  <a id="llhAnchor" target="_blank" rel="noopener" href="https://www.patreon.com/bePatron?u=3162666&redirect_uri=https%3A%2F%2Fplaytesthub.firebaseapp.com%2Fthanks&utm_medium=widget" style="line-height: 0;" title="Support me on Patreon!">
+      <img src="assets/patreon.png" title="Support me on Patreon!" class="patreon-widget" style="position: static; visibility: visible; width: 177px; height: 35px;" />
+  </a>
+</div>
+
+<!-- <div>Search:<input #searchBox id="search-box" (keyup)="search(searchBox.value)" /></div> -->
 <div>
   <div class="responsive" *ngFor="let icon of icons | async">
     <div class="gallery">
-      <div [hidden]="!isAdmin">
+      <!-- <div [hidden]="!isAdmin">
           <button class="deleteButton btn" (click)="deleteIcon(icon.id)"><i class="fa fa-close"></i></button>
           <div>&nbsp;</div>    
-      </div>
+      </div> -->
       <a target="_blank" [href]="icon.downloadUrl">
         <img [src]="icon.downloadUrl" [alt]="icon.fileName" width="500" height="500" />
         <div class="desc">{{icon.title}}</div>
       </a>
-      <tag-list [id]="icon.id" [(tags)]="icon.tags" [isAdmin]="isAdmin"></tag-list>
+      <!-- <tag-list [id]="icon.id" [(tags)]="icon.tags" [isAdmin]="isAdmin"></tag-list> -->
     </div>
   </div>
   <div class="clearfix"></div>
 </div>
-<div [hidden]="!isAdmin">
+<!-- <div>
   Upload:
   <input type="file" (change)="uploadFile($event)" multiple="multiple">
-</div>
+</div> -->
 <q>I, Mike Brown the copyright holder of these works, hereby release them into the public domain. This applies on the east-side,
   west-side, and worldwide.</q>

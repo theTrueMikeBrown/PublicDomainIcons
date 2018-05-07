@@ -15,15 +15,12 @@ export class DbService {
     constructor(private db: AngularFirestore,
         private storage: AngularFireStorage) { }
 
-    getIcons(priority: number = -1): Promise<Observable<Icon[]>> {
+    getIcons(): Promise<Observable<Icon[]>> {
         let itemsList = this.db.collection<Icon>('icons', ref =>
-            ref.orderBy('id', 'asc').limit(50));
-        return Promise.resolve(itemsList.valueChanges().map(icons => icons.map(icon => {
-            if (!icon.tags) {
-                icon.tags = [];
-            }
-            return icon;
-        })));
+            ref.orderBy('fileName', 'asc')
+            //.limit(50)
+        );
+        return Promise.resolve(itemsList.valueChanges());
     }
 
     uploadIcon(icon: Icon, data: Blob = null) {
@@ -61,13 +58,43 @@ export class DbService {
     }
 
     addTag(id: string, tag: string): void {
-        var doc = this.db.collection('icons').doc(id);
-        doc.valueChanges().subscribe((ref: Icon) => {
-            var tags: string[] = ref.tags || [];
-            if (!tags.includes(tag)) {
-                tags.push(tag);
-                doc.update({ "tags": tags });
-            }
+        var tagRef = this.db.collection('tags').doc(tag).set({ 'name': tag }).then(() => {
+            let itemsList = this.db.collection('iconTags', ref =>
+                ref.where('iconId', '==', id)
+                    .where('tag', '==', tag));
+            itemsList.valueChanges()
+                .subscribe((array: Icon[]) => {
+                    if (array.length === 0) {
+                        this.db.collection('iconTags').add({ "iconId": id, "tag": tag });
+                    }
+                });
         });
+    }
+
+    searchIcons(term: string): Promise<Observable<Icon[]>> {        
+        let subject: Subject<Icon> = new Subject;
+
+        let iconTagsList = this.db.collection('iconTags', ref =>
+            ref.where('tag', '==', term)
+               .orderBy('name', 'asc')
+               .limit(50)
+            );
+
+        // iconTagsList.valueChanges(iconTags => {
+        //     var icons : Icon[] = [];
+        //     iconTags.forEach(iconTag => {
+        //         icons.push(iconTag);
+        //     });
+        //     //this.db.collection('icons').doc();
+        // });
+
+        return null;
+
+        // return Promise.resolve(itemsList.valueChanges().map(icons => icons.map(icon => {
+        //     if (!icon.tags) {
+        //         icon.tags = [];
+        //     }
+        //     return icon;
+        // })));
     }
 }

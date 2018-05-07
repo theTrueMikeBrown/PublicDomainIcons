@@ -3,5 +3,4 @@ export class Icon {
     fileName: string;
     downloadUrl: string;
     title: string;
-    tags: string[];
 }

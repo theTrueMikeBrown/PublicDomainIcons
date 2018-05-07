@@ -19,6 +19,9 @@ export class TagListComponent implements OnInit {
 
   enterTag(tag: string) {
     this.business.addTag(this.id, tag);
+  }
+
+  select() {
     this.renderer2.selectRootElement('#input'+this.id).focus();
   }
 }
