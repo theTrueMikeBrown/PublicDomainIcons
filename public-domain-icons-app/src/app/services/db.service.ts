@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from 'angularfire2/database';
-import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection, DocumentChangeAction } from 'angularfire2/firestore';
 import { AngularFireStorage } from 'angularfire2/storage';
 import "rxjs/add/operator/map";
 import { Subject } from 'rxjs/Subject';
@@ -57,6 +57,19 @@ export class DbService {
         return this.db.collection('icons').doc(id).delete();
     }
 
+    removeBrokenImages(): void {
+        var blankDls = this.db.collection('icons', ref => ref.where("downloadUrl", "==", ""));
+        var db = this.db;
+        var batch = this.db.firestore.collection('icons').where('id', '==', '').get()
+            .then(function (querySnapshot) {
+                var batch = db.firestore.batch();
+                querySnapshot.forEach(function (doc) {
+                    batch.delete(doc.ref);
+                });
+                return batch.commit();
+            }).then(function () {});
+    }
+
     addTag(id: string, tag: string): void {
         var tagRef = this.db.collection('tags').doc(tag).set({ 'name': tag }).then(() => {
             let itemsList = this.db.collection('iconTags', ref =>
@@ -71,30 +84,15 @@ export class DbService {
         });
     }
 
-    searchIcons(term: string): Promise<Observable<Icon[]>> {        
+    searchIcons(term: string): Promise<Observable<Icon[]>> {
         let subject: Subject<Icon> = new Subject;
 
         let iconTagsList = this.db.collection('iconTags', ref =>
             ref.where('tag', '==', term)
-               .orderBy('name', 'asc')
-               .limit(50)
-            );
-
-        // iconTagsList.valueChanges(iconTags => {
-        //     var icons : Icon[] = [];
-        //     iconTags.forEach(iconTag => {
-        //         icons.push(iconTag);
-        //     });
-        //     //this.db.collection('icons').doc();
-        // });
+                .orderBy('name', 'asc')
+                .limit(50)
+        );
 
         return null;
-
-        // return Promise.resolve(itemsList.valueChanges().map(icons => icons.map(icon => {
-        //     if (!icon.tags) {
-        //         icon.tags = [];
-        //     }
-        //     return icon;
-        // })));
     }
 }

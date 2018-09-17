@@ -15,6 +15,7 @@ export class BusinessService {
   }
 
   uploadIcon(file: File): void {
+    debugger;
     var icon = { "fileName": file.name, "title": file.name.replace(/\.[^/.]+$/, ""), "id": "", "downloadUrl": "", "tags":[] };
 
     this.db.uploadIcon(icon, file);
@@ -24,14 +25,11 @@ export class BusinessService {
     this.db.deleteIcon(id);
   }
 
+  removeBrokenImages():void {
+    this.db.removeBrokenImages();
+  }
+
   addTag(id: string, tag: string): void {
     this.db.addTag(id, tag);
   }
-
-  // searchIcons(term: string): Observable<Icon[]> {
-  //   if (!term.trim()) {
-  //     return of([]);
-  //   }
-  //   return this.db.searchIcons(term);
-  // }
 }
