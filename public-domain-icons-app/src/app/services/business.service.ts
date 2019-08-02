@@ -14,8 +14,7 @@ export class BusinessService {
     return this.db.getIcons();
   }
 
-  uploadIcon(file: File): void {
-    debugger;
+  uploadIcon(file: File): void {    
     var icon = { "fileName": file.name, "title": file.name.replace(/\.[^/.]+$/, ""), "id": "", "downloadUrl": "", "tags":[] };
 
     this.db.uploadIcon(icon, file);
